@@ -1,20 +1,26 @@
-# A dashboard for internal VMs
+from flask import Flask, jsonify, render_template
 
-import XenAPI
+from vms import Session
+import os
 
-class Session(object):
+app = Flask(__name__)
 
-    def __init__(self, user, password):
-        self.session = XenAPI.Session("http://myhost")
-        self.user = user
-        self.password = password
-        self.login()
+HOST = ""
+USER = ""
+PWD  = ""
 
-    def login():
-        self.session.xenapi.login_with_password(self.user, self.password)
+session = Session(HOST, USER, PWD)
 
-    def vm_list():
-        """ Fetch a list of all internal VMs """
-        all = self.session.xenapi.VM.get_all_records()
-        for _, vm in all.items():
-            print vm["name_label"]
+@app.route("/")
+def home():
+    vms = session.vm_list()
+    return render_template("index.html", vms=vms)
+
+@app.route("/api/vms")
+def active_vms():
+    vms = session.vm_list()
+    return jsonify(vms=vms)
+
+if __name__ == "__main__":
+    app.run(debug=True,
+            port=5001)

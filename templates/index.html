@@ -1,0 +1,15 @@
+<!doctype html>
+<head>
+  <title>VMs</title>
+</head>
+
+<body>
+
+  <h1>BoxUK Virtual Machines</h1>
+
+  {% for vm in vms %}
+    <h1>{{ vm['name'] }}</h1>
+  {% endfor %}
+
+</body>
+</html>
