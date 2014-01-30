@@ -1,10 +1,15 @@
+# ===============================================
+#
+# XenBoard Web app
+#
+# ===============================================
+
 from flask import Flask, jsonify, render_template
 
 from vms import Session
 import os
 
 app = Flask(__name__)
-
 HOST = ""
 USER = ""
 PWD  = ""
