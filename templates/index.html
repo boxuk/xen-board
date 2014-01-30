@@ -1,15 +1,29 @@
 <!doctype html>
 <head>
   <title>VMs</title>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+  <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,500,700' rel='stylesheet' type='text/css'>
+  <style>
+    *, h1, h2, h3 { font-family: 'Roboto', sans-serif; }
+    .running { color: #009966; font-weight: bold; }
+    .halted { color: #990000 }
+  </style>
 </head>
-
 <body>
 
-  <h1>BoxUK Virtual Machines</h1>
+  <div class="container">
+    <h1>BoxUK Virtual Machines</h1>
 
-  {% for vm in vms %}
-    <h1>{{ vm['name'] }}</h1>
-  {% endfor %}
+    <ul>
+    {% for vm in vms %}
+      <li>
+        <h2>{{ vm['name'] }}</h2>
+        <div class="power-state {{ vm['state'].lower() }}">{{ vm['state'] }}</div>
+        <div class="uuid">{{ vm['uuid'] }}</div>
+      </li>
+    {% endfor %}
+    </ul>
+  </div>
 
 </body>
 </html>
