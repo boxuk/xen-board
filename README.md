@@ -2,6 +2,8 @@
 
 A Python application that lists all internal VMs
 
+![](https://raw.github.com/boxuk/xen-board/master/static/preview.png)
+
 ## Requirements
 
 + Python 2.7
