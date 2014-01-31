@@ -1,29 +1,35 @@
 <!doctype html>
-<head>
-  <title>VMs</title>
-  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
-  <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,500,700' rel='stylesheet' type='text/css'>
-  <style>
-    *, h1, h2, h3 { font-family: 'Roboto', sans-serif; }
-    .running { color: #009966; font-weight: bold; }
-    .halted { color: #990000 }
-  </style>
-</head>
-<body>
+  <head>
+    <title>VMs</title>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,500,700' rel='stylesheet' type='text/css'>
+    <style>
+      body { background: #111; color: #666; }
+      *, h1, h2, h3 { font-family: 'Roboto', sans-serif; }
+      h1,h2,h3 { color: white; }
+      .server { min-height: 300px; background: #333; border: 2px solid #444;
+                padding: 24px; margin: 0 0 1% 1% }
+      .server-halted { background: #222; }
+      .running { color: #009966; font-weight: bold; }
+      .halted { color: #990000 }
+    </style>
+  </head>
+  <body>
 
-  <div class="container">
-    <h1>BoxUK Virtual Machines</h1>
+    <div class="container">
+      <div class="col-md-12">
+        <h1>BoxUK Virtual Machines</h1>
+        <br/>
+      </div>
 
-    <ul>
-    {% for vm in vms %}
-      <li>
-        <h2>{{ vm['name'] }}</h2>
-        <div class="power-state {{ vm['state'].lower() }}">{{ vm['state'] }}</div>
-        <div class="uuid">{{ vm['uuid'] }}</div>
-      </li>
-    {% endfor %}
-    </ul>
-  </div>
+      {% for vm in vms %}
+	<div class="server-{{ vm['state'].lower() }} server col-md-3">
+	  <h2>{{ vm['name'] }}</h2>
+	  <div class="power-state {{ vm['state'].lower() }}">{{ vm['state'] }}</div>
+	  <div class="uuid">{{ vm['uuid'] }}</div>
+	</div>
+      {% endfor %}
+    </div>
 
-</body>
+  </body>
 </html>
