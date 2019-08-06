@@ -1,3 +1,5 @@
+# THIS REPOSITORY IS NO LONGER MAINTAINED
+
 # Xen Server Board
 
 A Python application that lists all internal VMs
